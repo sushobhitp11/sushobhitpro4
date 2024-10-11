@@ -4,7 +4,6 @@ import java.util.Date;
 
 public class UserBean extends BaseBean {
 	
-	private long id;
 	private String firstName;
 	private String lastName;
 	private String login;
@@ -14,6 +13,7 @@ public class UserBean extends BaseBean {
 	private String mobileNo;
 	private long roleId;
 	private String gender;
+	
 	public long getId() {
 		return id;
 	}

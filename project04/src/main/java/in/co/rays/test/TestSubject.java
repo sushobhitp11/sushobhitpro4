@@ -50,6 +50,7 @@ public class TestSubject {
 		bean.setModifiedBy("admin@gmail.com");
 		bean.setCreatedDatetime(new Timestamp(new Date().getTime()));
 		bean.setModifiedDatetime(new Timestamp(new Date().getTime()));
+		bean.setId(1);
 
 		model.update(bean);
 	}

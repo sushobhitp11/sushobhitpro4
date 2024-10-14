@@ -64,6 +64,7 @@ public class TestUser {
 		bean.setModifiedBy("anurag");
 		bean.setCreatedDatetime(new Timestamp(new Date().getTime()));
 		bean.setModifiedDatetime(new Timestamp(new Date().getTime()));
+		bean.setId(1);
 
 		model.update(bean);
 	}

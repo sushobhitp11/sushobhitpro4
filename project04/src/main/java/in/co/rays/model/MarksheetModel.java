@@ -145,9 +145,9 @@ public class MarksheetModel {
 			bean.setCreatedDatetime(rs.getTimestamp(10));
 			bean.setModifiedDatetime(rs.getTimestamp(11));
 
-			JDBCDataSource.closeConnection(conn);
-
+			
 		}
+		JDBCDataSource.closeConnection(conn);
 		return bean;
 	}
 	public MarksheetBean findByRollNo(String rollNo) throws Exception {
@@ -172,9 +172,8 @@ public class MarksheetModel {
 			bean.setCreatedDatetime(rs.getTimestamp(10));
 			bean.setModifiedDatetime(rs.getTimestamp(11));
 
-			JDBCDataSource.closeConnection(conn);
-
 		}
+		JDBCDataSource.closeConnection(conn);
 		return bean;
 		
 	}

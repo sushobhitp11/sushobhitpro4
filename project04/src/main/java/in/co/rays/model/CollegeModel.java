@@ -146,9 +146,9 @@ public class CollegeModel {
 			bean.setCreatedDatetime(rs.getTimestamp(9));
 			bean.setModifiedDatetime(rs.getTimestamp(10));
 
-			JDBCDataSource.closeConnection(conn);
-
+		
 		}
+		JDBCDataSource.closeConnection(conn);
 		return bean;
 	}
 

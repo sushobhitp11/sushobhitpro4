@@ -39,13 +39,13 @@ public class TestRole {
 		
 		RoleBean bean = new RoleBean();
 		
-		bean.setId(2);
 		bean.setName("admin");
 		bean.setDescription("admin");
 		bean.setCreatedBy("admin@gmail.com");
 		bean.setModifiedBy("admin");
 		bean.setCreatedDatetime(new Timestamp(new Date().getTime()));
 		bean.setModifiedDatetime(new Timestamp(new Date().getTime()));
+		bean.setId(2);
 		
 		RoleModel model = new RoleModel();
 		model.update(bean);

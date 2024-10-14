@@ -54,6 +54,7 @@ public static void main(String[] args) throws Exception {
 		bean.setModifiedBy("prince");
 		bean.setCreatedDatetime(new Timestamp(new Date().getTime()));
 		bean.setModifiedDatetime(new Timestamp(new Date().getTime()));
+		bean.setId(1);
 
 		model.update(bean);
 	}

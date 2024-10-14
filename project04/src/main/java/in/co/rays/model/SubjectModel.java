@@ -77,7 +77,7 @@ public class SubjectModel {
 		Connection conn = JDBCDataSource.getConnection();
 
 		PreparedStatement pstmt = conn.prepareStatement(
-				"update st_subject name = ?, course_id = ?, course_name = ?, description = ?, created_by = ?, modified_by = ?, created_datetime = ?, modified_datetime = ?  where id = ?");
+				"update st_subject set name = ?, course_id = ?, course_name = ?, description = ?, created_by = ?, modified_by = ?, created_datetime = ?, modified_datetime = ?  where id = ?");
 
 	
 		

@@ -128,9 +128,8 @@ public class UserModel {
 			bean.setModifiedDatetime(rs.getTimestamp(13));
 			
 
-			JDBCDataSource.closeConnection(conn);
-
 		}
+		JDBCDataSource.closeConnection(conn);
 		return bean;
 
 	}
@@ -160,9 +159,8 @@ public class UserModel {
 			bean.setModifiedDatetime(rs.getTimestamp(13));
 			
 
-			JDBCDataSource.closeConnection(conn);
-
 		}
+		JDBCDataSource.closeConnection(conn);
 		return bean;
 	}
 	public UserBean authenticate(String loginId, String password) throws Exception {

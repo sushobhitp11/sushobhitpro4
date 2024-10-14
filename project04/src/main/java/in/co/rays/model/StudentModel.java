@@ -12,9 +12,9 @@ import in.co.rays.exception.DuplicateRecordException;
 import in.co.rays.util.JDBCDataSource;
 
 public class StudentModel {
-	
-public Integer nextPk() throws Exception {
-		
+
+	public Integer nextPk() throws Exception {
+
 		int pk = 0;
 
 		Connection conn = JDBCDataSource.getConnection();
@@ -30,65 +30,64 @@ public Integer nextPk() throws Exception {
 		JDBCDataSource.closeConnection(conn);
 
 		return pk + 1;
-		
-		
-	}
-public void add(StudentBean bean) throws Exception {
 
-	StudentBean existBean = findByEmail(bean.getEmail());
-
-	if (existBean != null) {
-		throw new DuplicateRecordException("email already exist..!!");
 	}
 
-	CollegeModel collegeModel = new CollegeModel();
+	public void add(StudentBean bean) throws Exception {
 
-	CollegeBean collegeBean = collegeModel.findByPk(bean.getCollegeId());
+		StudentBean existBean = findByEmail(bean.getEmail());
 
-	bean.setCollegeName(collegeBean.getName());
+		if (existBean != null) {
+			throw new DuplicateRecordException("email already exist..!!");
+		}
 
-	int pk = nextPk();
+		CollegeModel collegeModel = new CollegeModel();
 
-	Connection conn = JDBCDataSource.getConnection();
+		CollegeBean collegeBean = collegeModel.findByPk(bean.getCollegeId());
 
-	PreparedStatement pstmt = conn
-			.prepareStatement("insert into st_student values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		bean.setCollegeName(collegeBean.getName());
 
-	pstmt.setLong(1, pk);
-	pstmt.setString(2, bean.getFirstName());
-	pstmt.setString(3, bean.getLastName());
-	pstmt.setDate(4, new java.sql.Date(bean.getDob().getTime()));
-	pstmt.setString(5, bean.getGender());
-	pstmt.setString(6, bean.getMobileNo());
-	pstmt.setString(7, bean.getEmail());
-	pstmt.setLong(8, bean.getCollegeId());
-	pstmt.setString(9, bean.getCollegeName());
-	pstmt.setString(10, bean.getCreatedBy());
-	pstmt.setString(11, bean.getModifiedBy());
-	pstmt.setTimestamp(12, bean.getCreatedDatetime());
-	pstmt.setTimestamp(13, bean.getModifiedDatetime());
+		int pk = nextPk();
 
-	int i = pstmt.executeUpdate();
+		Connection conn = JDBCDataSource.getConnection();
 
-	JDBCDataSource.closeConnection(conn);
+		PreparedStatement pstmt = conn
+				.prepareStatement("insert into st_student values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-	System.out.println("data inserted => " + i);
-}
+		pstmt.setLong(1, pk);
+		pstmt.setString(2, bean.getFirstName());
+		pstmt.setString(3, bean.getLastName());
+		pstmt.setDate(4, new java.sql.Date(bean.getDob().getTime()));
+		pstmt.setString(5, bean.getGender());
+		pstmt.setString(6, bean.getMobileNo());
+		pstmt.setString(7, bean.getEmail());
+		pstmt.setLong(8, bean.getCollegeId());
+		pstmt.setString(9, bean.getCollegeName());
+		pstmt.setString(10, bean.getCreatedBy());
+		pstmt.setString(11, bean.getModifiedBy());
+		pstmt.setTimestamp(12, bean.getCreatedDatetime());
+		pstmt.setTimestamp(13, bean.getModifiedDatetime());
+
+		int i = pstmt.executeUpdate();
+
+		JDBCDataSource.closeConnection(conn);
+
+		System.out.println("data inserted => " + i);
+	}
+
 	public void update(StudentBean bean) throws Exception {
-		
+
 		StudentBean existBean = findByEmail(bean.getEmail());
 
 		if (existBean != null && bean.getId() != existBean.getId()) {
 			throw new DuplicateRecordException("email already exist..!!");
 		}
-		
 
 		Connection conn = JDBCDataSource.getConnection();
 
 		PreparedStatement pstmt = conn.prepareStatement(
 				"update st_student set first_name = ?, last_name = ?, dob = ?, gender = ?, mobile_no = ?, email = ?, college_id = ?, college_name = ?, created_by = ?, modified_by = ?, created_datetime = ?, modified_datetime = ?  where id = ?");
 
-		
 		pstmt.setString(1, bean.getFirstName());
 		pstmt.setString(2, bean.getLastName());
 		pstmt.setDate(3, new java.sql.Date(bean.getDob().getTime()));
@@ -104,36 +103,33 @@ public void add(StudentBean bean) throws Exception {
 		pstmt.setLong(13, bean.getId());
 
 		int i = pstmt.executeUpdate();
-		
+
 		JDBCDataSource.closeConnection(conn);
 
 		System.out.println("Data updated => " + i);
 
-	
-		
 	}
+
 	public void delete(StudentBean bean) throws Exception {
-		
+
 		Connection conn = JDBCDataSource.getConnection();
 
 		PreparedStatement pstmt = conn.prepareStatement("DELETE FROM st_student WHERE id =?");
-		
+
 		pstmt.setLong(1, bean.getId());
-		
+
 		int i = pstmt.executeUpdate();
-		
+
 		pstmt.executeUpdate();
 
 		JDBCDataSource.closeConnection(conn);
-		
-		System.out.println("data deleted => " + i);
-		
-		
-		
-	}
-    public StudentBean findByPk(long id) throws Exception {
 
-		
+		System.out.println("data deleted => " + i);
+
+	}
+
+	public  StudentBean findByPk(long id) throws Exception {
+
 		Connection conn = JDBCDataSource.getConnection();
 		PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM st_student WHERE id =?");
 		pstmt.setLong(1, id);
@@ -155,15 +151,14 @@ public void add(StudentBean bean) throws Exception {
 			bean.setModifiedBy(rs.getString(8));
 			bean.setCreatedDatetime(rs.getTimestamp(9));
 			bean.setModifiedDatetime(rs.getTimestamp(10));
-			
 
 			JDBCDataSource.closeConnection(conn);
 
 		}
 		return bean;
-    }
-    public StudentBean findByEmail(String email) throws Exception {
+	}
 
+	public StudentBean findByEmail(String email) throws Exception {
 
 		Connection conn = JDBCDataSource.getConnection();
 		PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM st_student WHERE email =?");
@@ -186,8 +181,6 @@ public void add(StudentBean bean) throws Exception {
 			bean.setModifiedBy(rs.getString(8));
 			bean.setCreatedDatetime(rs.getTimestamp(9));
 			bean.setModifiedDatetime(rs.getTimestamp(10));
-			
-			
 
 			JDBCDataSource.closeConnection(conn);
 
@@ -208,7 +201,7 @@ public void add(StudentBean bean) throws Exception {
 			if (bean.getDob() != null && bean.getDob().getTime() > 0) {
 				sql.append(" and dob like '" + new java.sql.Date(bean.getDob().getTime()) + "%'");
 			}
-			
+
 		}
 
 		if (pageSize > 0) {

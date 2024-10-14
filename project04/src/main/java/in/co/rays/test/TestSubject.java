@@ -24,7 +24,7 @@ public class TestSubject {
 		SubjectBean bean = new SubjectBean();
 
 		bean.setName("Data Structure");
-		bean.setCourseId(1);
+		bean.setCourseId(1L);
 		bean.setCoursename("MCA");
 		bean.setDescription("Master's in Computer Application");
 		bean.setCreatedBy("admin@gmail.com");
@@ -43,7 +43,7 @@ public class TestSubject {
 		SubjectBean bean = model.findByPk(2);
 
 		bean.setName("MCA");
-		bean.setCourseId(Long);
+		bean.setCourseId(1L);
 		bean.setCoursename("MCA");
 		bean.setDescription("Master's in Computer Application");
 		bean.setCreatedBy("admin@gmail.com");

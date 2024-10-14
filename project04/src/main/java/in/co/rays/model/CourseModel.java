@@ -116,10 +116,8 @@ public class CourseModel {
 			bean.setModifiedBy(rs.getString(6));
 			bean.setCreatedDatetime(rs.getTimestamp(7));
 			bean.setModifiedDatetime(rs.getTimestamp(8));
-
-			JDBCDataSource.closeConnection(conn);
-
 		}
+		JDBCDataSource.closeConnection(conn);
 		return bean;
 	}
 

@@ -143,18 +143,17 @@ public class StudentModel {
 			bean.setLastName(rs.getString(3));
 			bean.setDob(rs.getDate(4));
 			bean.setGender(rs.getString(5));
-			bean.setMobileNo(rs.getString(5));
-			bean.setEmail(rs.getString(6));
-			bean.setCollegeId(rs.getLong(5));
-			bean.setCollegeName(rs.getString(5));
-			bean.setCreatedBy(rs.getString(7));
-			bean.setModifiedBy(rs.getString(8));
-			bean.setCreatedDatetime(rs.getTimestamp(9));
-			bean.setModifiedDatetime(rs.getTimestamp(10));
-
-			JDBCDataSource.closeConnection(conn);
+			bean.setMobileNo(rs.getString(6));
+			bean.setEmail(rs.getString(7));
+			bean.setCollegeId(rs.getLong(8));
+			bean.setCollegeName(rs.getString(9));
+			bean.setCreatedBy(rs.getString(10));
+			bean.setModifiedBy(rs.getString(11));
+			bean.setCreatedDatetime(rs.getTimestamp(12));
+			bean.setModifiedDatetime(rs.getTimestamp(13));
 
 		}
+		JDBCDataSource.closeConnection(conn);
 		return bean;
 	}
 
@@ -173,18 +172,18 @@ public class StudentModel {
 			bean.setLastName(rs.getString(3));
 			bean.setDob(rs.getDate(4));
 			bean.setGender(rs.getString(5));
-			bean.setMobileNo(rs.getString(5));
-			bean.setEmail(rs.getString(6));
-			bean.setCollegeId(rs.getLong(5));
-			bean.setCollegeName(rs.getString(5));
-			bean.setCreatedBy(rs.getString(7));
-			bean.setModifiedBy(rs.getString(8));
-			bean.setCreatedDatetime(rs.getTimestamp(9));
-			bean.setModifiedDatetime(rs.getTimestamp(10));
+			bean.setMobileNo(rs.getString(6));
+			bean.setEmail(rs.getString(7));
+			bean.setCollegeId(rs.getLong(8));
+			bean.setCollegeName(rs.getString(9));
+			bean.setCreatedBy(rs.getString(10));
+			bean.setModifiedBy(rs.getString(11));
+			bean.setCreatedDatetime(rs.getTimestamp(12));
+			bean.setModifiedDatetime(rs.getTimestamp(13));
 
-			JDBCDataSource.closeConnection(conn);
-
+	
 		}
+		JDBCDataSource.closeConnection(conn);
 		return bean;
 	}
 
@@ -224,14 +223,14 @@ public class StudentModel {
 			bean.setLastName(rs.getString(3));
 			bean.setDob(rs.getDate(4));
 			bean.setGender(rs.getString(5));
-			bean.setMobileNo(rs.getString(5));
-			bean.setEmail(rs.getString(6));
-			bean.setCollegeId(rs.getLong(5));
-			bean.setCollegeName(rs.getString(5));
-			bean.setCreatedBy(rs.getString(7));
-			bean.setModifiedBy(rs.getString(8));
-			bean.setCreatedDatetime(rs.getTimestamp(9));
-			bean.setModifiedDatetime(rs.getTimestamp(10));
+			bean.setMobileNo(rs.getString(6));
+			bean.setEmail(rs.getString(7));
+			bean.setCollegeId(rs.getLong(8));
+			bean.setCollegeName(rs.getString(9));
+			bean.setCreatedBy(rs.getString(10));
+			bean.setModifiedBy(rs.getString(11));
+			bean.setCreatedDatetime(rs.getTimestamp(12));
+			bean.setModifiedDatetime(rs.getTimestamp(13));
 			list.add(bean);
 		}
 		JDBCDataSource.closeConnection(conn);

@@ -56,7 +56,7 @@ public class RoleModel {
 		Connection cnn = JDBCDataSource.getConnection();
 
 		PreparedStatement pstmt = cnn.prepareStatement(
-				"UPDATE st_role SET name=?,description=?,created_By=?,modified_By=?,created_DateTime=?,modified_DateTime=? WHERE id=?");
+				"update st_role set name=?,description=?,created_By=?,modified_By=?,created_DateTime=?,modified_DateTime=? WHERE id=?");
 
 		pstmt.setString(1, bean.getName());
 		pstmt.setString(2, bean.getDescription());
@@ -76,7 +76,7 @@ public class RoleModel {
 
 		Connection conn = JDBCDataSource.getConnection();
 
-		PreparedStatement pstmt = conn.prepareStatement("DELETE FROM st_role WHERE id =?");
+		PreparedStatement pstmt = conn.prepareStatement("delete from st_role where id =?");
 		pstmt.setLong(1, bean.getId());
 		pstmt.executeUpdate();
 
@@ -85,7 +85,7 @@ public class RoleModel {
 
 	public RoleBean findByPK(long pk) throws Exception {
 
-		StringBuffer sql = new StringBuffer("SELECT * FROM st_role WHERE ID=?");
+		StringBuffer sql = new StringBuffer("select * from st_role where ID=?");
 
 		Connection conn = JDBCDataSource.getConnection();
 		PreparedStatement pstmt = conn.prepareStatement(sql.toString());
@@ -113,7 +113,7 @@ public class RoleModel {
 
 
 		Connection conn = JDBCDataSource.getConnection();
-		PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM st_role WHERE name =?");
+		PreparedStatement pstmt = conn.prepareStatement("select * from st_role where name =?");
 		pstmt.setString(1, name);
 		ResultSet rs = pstmt.executeQuery();
 
@@ -136,7 +136,7 @@ public class RoleModel {
 
 	public List search(RoleBean bean, int pageNo, int pageSize) throws Exception {
 
-		StringBuffer sql = new StringBuffer("SELECT * FROM st_role WHERE 1=1");
+		StringBuffer sql = new StringBuffer("select * from st_role where 1=1");
 
 		if (bean != null) {
 			if (bean.getId() > 0) {

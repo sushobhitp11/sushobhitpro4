@@ -84,7 +84,7 @@ public class CourseModel {
 
 		Connection conn = JDBCDataSource.getConnection();
 
-		PreparedStatement pstmt = conn.prepareStatement("DELETE FROM st_course WHERE id =?");
+		PreparedStatement pstmt = conn.prepareStatement("delete from st_course where id =?");
 
 		pstmt.setLong(1, bean.getId());
 
@@ -101,7 +101,7 @@ public class CourseModel {
 	public  CourseBean findByPk(long id) throws Exception {
 
 		Connection conn = JDBCDataSource.getConnection();
-		PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM st_course WHERE id =?");
+		PreparedStatement pstmt = conn.prepareStatement("SELECT * from st_course where id =?");
 		pstmt.setLong(1, id);
 		ResultSet rs = pstmt.executeQuery();
 

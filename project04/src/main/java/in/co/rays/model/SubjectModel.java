@@ -103,7 +103,7 @@ public class SubjectModel {
 
 		Connection conn = JDBCDataSource.getConnection();
 
-		PreparedStatement pstmt = conn.prepareStatement("DELETE FROM st_subject WHERE id =?");
+		PreparedStatement pstmt = conn.prepareStatement("delete from st_subject where id =?");
 
 		pstmt.setLong(1, bean.getId());
 
@@ -120,7 +120,7 @@ public class SubjectModel {
 	public  SubjectBean findByPk(long id) throws Exception {
 
 		Connection conn = JDBCDataSource.getConnection();
-		PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM st_subject WHERE id =?");
+		PreparedStatement pstmt = conn.prepareStatement("select * from st_subject where id =?");
 		pstmt.setLong(1, id);
 		ResultSet rs = pstmt.executeQuery();
 

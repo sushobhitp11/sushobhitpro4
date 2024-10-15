@@ -90,7 +90,7 @@ public class UserModel {
 
 		Connection conn = JDBCDataSource.getConnection();
 
-		PreparedStatement pstmt = conn.prepareStatement("DELETE FROM st_user WHERE id =?");
+		PreparedStatement pstmt = conn.prepareStatement("delete from st_user where id =?");
 		pstmt.setLong(1, bean.getId());
 		
 		int i = pstmt.executeUpdate();
@@ -106,7 +106,7 @@ public class UserModel {
 
 		
 		Connection conn = JDBCDataSource.getConnection();
-		PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM st_user WHERE ID=?");
+		PreparedStatement pstmt = conn.prepareStatement("select * from st_user where ID=?");
 		pstmt.setLong(1, id);
 		ResultSet rs = pstmt.executeQuery();
 
@@ -137,7 +137,7 @@ public class UserModel {
 
 
 		Connection conn = JDBCDataSource.getConnection();
-		PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM st_user WHERE login =?");
+		PreparedStatement pstmt = conn.prepareStatement("select * from st_user where login =?");
 		pstmt.setString(1, login);
 		ResultSet rs = pstmt.executeQuery();
 

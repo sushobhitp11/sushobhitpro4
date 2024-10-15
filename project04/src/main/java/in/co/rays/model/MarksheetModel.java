@@ -109,7 +109,7 @@ public class MarksheetModel {
 
 		Connection conn = JDBCDataSource.getConnection();
 
-		PreparedStatement pstmt = conn.prepareStatement("DELETE FROM st_marksheet WHERE id =?");
+		PreparedStatement pstmt = conn.prepareStatement("delete from st_marksheet where id =?");
 
 		pstmt.setLong(1, bean.getId());
 
@@ -126,7 +126,7 @@ public class MarksheetModel {
 	public  MarksheetBean findByPk(long id) throws Exception {
 
 		Connection conn = JDBCDataSource.getConnection();
-		PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM st_marksheet WHERE id =?");
+		PreparedStatement pstmt = conn.prepareStatement("select * from st_marksheet where id =?");
 		pstmt.setLong(1, id);
 		ResultSet rs = pstmt.executeQuery();
 
@@ -153,7 +153,7 @@ public class MarksheetModel {
 	public MarksheetBean findByRollNo(String rollNo) throws Exception {
 
 		Connection conn = JDBCDataSource.getConnection();
-		PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM st_marksheet WHERE email =?");
+		PreparedStatement pstmt = conn.prepareStatement("select * from st_marksheet where email =?");
 		pstmt.setString(1, rollNo);
 		ResultSet rs = pstmt.executeQuery();
 

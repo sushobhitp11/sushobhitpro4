@@ -74,4 +74,12 @@ public class UserBean extends BaseBean {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
+	@Override
+	public String getKey() {
+		return null;
+	}
+	@Override
+	public String getValue() {
+		return null;
+	}
 }

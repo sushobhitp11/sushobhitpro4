@@ -140,8 +140,12 @@ public class SubjectModel {
 		}
 		JDBCDataSource.closeConnection(conn);
 		return bean;
+		
 	}
-
+	public List list() throws Exception {
+	        return search(null, 0, 0);
+		
+	}
 	public List search(SubjectBean bean, int pageNo, int pageSize) throws Exception {
 
 		Connection conn = JDBCDataSource.getConnection();

@@ -150,13 +150,18 @@ public class CollegeModel {
 		}
 		JDBCDataSource.closeConnection(conn);
 		return bean;
+		
+	}
+	public List list() throws Exception {
+		return search(null, 0, 0);
+		
 	}
 
 	public List search(CollegeBean bean, int pageNo, int pageSize) throws Exception {
 
 		Connection conn = JDBCDataSource.getConnection();
 
-		StringBuffer sql = new StringBuffer("select * from user where 1=1");
+		StringBuffer sql = new StringBuffer("select * from st_college where 1=1");
 
 		if (bean != null) {
 			if (bean.getName() != null && bean.getName().length() > 0) {

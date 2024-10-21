@@ -45,4 +45,12 @@ public class MarksheetBean extends BaseBean {
 	public void setMaths(int maths) {
 		this.maths = maths;
 	}
+	@Override
+	public String getKey() {
+		return null;
+	}
+	@Override
+	public String getValue() {
+		return null;
+	}
 }

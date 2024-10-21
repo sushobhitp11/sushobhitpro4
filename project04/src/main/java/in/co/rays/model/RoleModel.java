@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import in.co.rays.bean.RoleBean;
+import in.co.rays.bean.UserBean;
+import in.co.rays.exception.ApplicationException;
+import in.co.rays.exception.DuplicateRecordException;
 import in.co.rays.util.JDBCDataSource;
 
 public class RoleModel {
@@ -32,23 +35,46 @@ public class RoleModel {
 
 	public void add(RoleBean bean) throws Exception {
 
+		Connection conn = null;
+
 		int pk = 0;
 
-		Connection conn = JDBCDataSource.getConnection();
+		RoleBean existBean = findByName(bean.getName());
 
-		PreparedStatement pstmt = conn.prepareStatement("insert into st_role values(?,?,?,?,?,?,?)");
+		if (existBean != null) {
+			throw new DuplicateRecordException("login already exist..!!");
+		}
+		try {
+			pk = nextPk();
 
-		pstmt.setLong(1, pk);
-		pstmt.setString(2, bean.getName());
-		pstmt.setString(3, bean.getDescription());
-		pstmt.setString(4, bean.getCreatedBy());
-		pstmt.setString(5, bean.getModifiedBy());
-		pstmt.setTimestamp(6, bean.getCreatedDatetime());
-		pstmt.setTimestamp(7, bean.getModifiedDatetime());
+			conn = JDBCDataSource.getConnection();
 
-		int i = pstmt.executeUpdate();
+			conn.setAutoCommit(false);
 
-		System.out.println(" data inserted => " + i);
+			PreparedStatement pstmt = conn.prepareStatement("insert into st_role values(?,?,?,?,?,?,?)");
+
+			pstmt.setLong(1, pk);
+			pstmt.setString(2, bean.getName());
+			pstmt.setString(3, bean.getDescription());
+			pstmt.setString(4, bean.getCreatedBy());
+			pstmt.setString(5, bean.getModifiedBy());
+			pstmt.setTimestamp(6, bean.getCreatedDatetime());
+			pstmt.setTimestamp(7, bean.getModifiedDatetime());
+
+			int i = pstmt.executeUpdate();
+			conn.commit();
+			System.out.println(" data inserted => " + i);
+
+		} catch (Exception e) {
+			try {
+				conn.rollback();
+			} catch (Exception ex) {
+				throw new ApplicationException("Exception: add rollback exception " + ex.getMessage());
+			}
+			throw new ApplicationException("Exception: Exception in add User " + e);
+		} finally {
+			JDBCDataSource.closeConnection(conn);
+		}
 	}
 
 	public void update(RoleBean bean) throws Exception {
@@ -109,8 +135,8 @@ public class RoleModel {
 		return bean;
 
 	}
-	public RoleBean findByName(String name) throws Exception {
 
+	public RoleBean findByName(String name) throws Exception {
 
 		Connection conn = JDBCDataSource.getConnection();
 		PreparedStatement pstmt = conn.prepareStatement("select * from st_role where name =?");
@@ -132,7 +158,11 @@ public class RoleModel {
 
 		}
 		return bean;
-	}	
+	}
+
+	public List list() throws Exception {
+		return search(null, 0, 0);
+	}
 
 	public List search(RoleBean bean, int pageNo, int pageSize) throws Exception {
 

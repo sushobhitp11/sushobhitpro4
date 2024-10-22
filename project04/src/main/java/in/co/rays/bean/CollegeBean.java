@@ -7,6 +7,7 @@ public class CollegeBean extends BaseBean {
 	private String state;
 	private String city;
 	private String phoneNo;
+	
 	public String getName() {
 		return name;
 	}

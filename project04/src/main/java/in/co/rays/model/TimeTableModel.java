@@ -1,6 +1,7 @@
 package in.co.rays.model;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -9,11 +10,11 @@ import java.util.List;
 
 import in.co.rays.bean.CourseBean;
 import in.co.rays.bean.SubjectBean;
-import in.co.rays.bean.TimeTableBean;
+import in.co.rays.bean.TimetableBean;
 import in.co.rays.exception.DuplicateRecordException;
 import in.co.rays.util.JDBCDataSource;
 
-public class TimeTableModel {
+public class TimetableModel {
 
 	public Integer nextPk() throws Exception {
 		int pk = 0;
@@ -27,7 +28,7 @@ public class TimeTableModel {
 		return pk + 1;
 	}
 
-	public void add(TimeTableBean bean) throws Exception {
+	public void add(TimetableBean bean) throws Exception {
 
 		CourseModel courseModel = new CourseModel();
 
@@ -70,7 +71,7 @@ public class TimeTableModel {
 
 	}
 
-	public void update(TimeTableBean bean) throws Exception {
+	public void update(TimetableBean bean) throws Exception {
 
 		CourseModel courseModel = new CourseModel();
 
@@ -111,7 +112,7 @@ public class TimeTableModel {
 
 	}
 
-	public void delete(TimeTableBean bean) throws Exception {
+	public void delete(TimetableBean bean) throws Exception {
 
 		Connection conn = JDBCDataSource.getConnection();
 
@@ -127,7 +128,7 @@ public class TimeTableModel {
 
 	}
 
-	public TimeTableBean findByPk(long id) throws Exception {
+	public TimetableBean findByPk(long id) throws Exception {
 
 		Connection conn = JDBCDataSource.getConnection();
 
@@ -137,10 +138,10 @@ public class TimeTableModel {
 
 		ResultSet rs = pstmt.executeQuery();
 
-		TimeTableBean bean = null;
+		TimetableBean bean = null;
 
 		while (rs.next()) {
-			bean = new TimeTableBean();
+			bean = new TimetableBean();
 			bean.setId(rs.getLong(1));
 			bean.setSemester(rs.getString(2));
 			bean.setDescription(rs.getString(3));
@@ -159,7 +160,7 @@ public class TimeTableModel {
 		return bean;
 	}
 
-	public TimeTableBean findByName(String name) throws Exception {
+	public TimetableBean findByName(String name) throws Exception {
 
 		Connection conn = JDBCDataSource.getConnection();
 
@@ -169,10 +170,10 @@ public class TimeTableModel {
 
 		ResultSet rs = pstmt.executeQuery();
 
-		TimeTableBean bean = null;
+		TimetableBean bean = null;
 
 		while (rs.next()) {
-			bean = new TimeTableBean();
+			bean = new TimetableBean();
 			bean.setId(rs.getLong(1));
 			bean.setSemester(rs.getString(2));
 			bean.setDescription(rs.getString(3));
@@ -196,7 +197,7 @@ public class TimeTableModel {
 		
 	}
 
-	public List search(TimeTableBean bean, int pageNo, int pageSize) throws Exception {
+	public List search(TimetableBean bean, int pageNo, int pageSize) throws Exception {
 
 		Connection conn = JDBCDataSource.getConnection();
 
@@ -222,7 +223,7 @@ public class TimeTableModel {
 		List list = new ArrayList();
 
 		while (rs.next()) {
-			bean = new TimeTableBean();
+			bean = new TimetableBean();
 			bean.setId(rs.getLong(1));
 			bean.setSemester(rs.getString(2));
 			bean.setDescription(rs.getString(3));

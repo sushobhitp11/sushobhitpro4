@@ -1,4 +1,4 @@
-package in.co.rays.ctl;
+	package in.co.rays.ctl;
 
 import java.io.IOException;
 import java.util.List;
@@ -83,6 +83,10 @@ public class UserCtl extends BaseCtl {
 			request.setAttribute("mobileNo", "Invalid Mobile No");
 			pass = false;
 		}
+		if (DataValidator.isNull(request.getParameter("roleId"))) {
+			request.setAttribute("roleId", PropertyReader.getValue("error.require", "Role"));
+			pass = false;
+		}	
 		return pass;
 	}
 

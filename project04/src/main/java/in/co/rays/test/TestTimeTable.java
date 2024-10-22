@@ -1,14 +1,14 @@
 package in.co.rays.test;
 
 import java.sql.Timestamp;
+
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import in.co.rays.bean.TimetableBean;
+import in.co.rays.model.TimetableModel;
 
-import in.co.rays.bean.TimeTableBean;
-import in.co.rays.model.TimeTableModel;
-
-public class TestTimeTable {
+public class TesttimeTable {
 	
 	   public static void main(String[] args) throws Exception {
 			
@@ -21,7 +21,7 @@ public class TestTimeTable {
 		}
 		public static void testAdd() throws Exception {
 
-			TimeTableBean bean = new TimeTableBean();
+			TimetableBean bean = new TimetableBean();
 
 			bean.setSemester("4");
 			bean.setDescription("Description");
@@ -34,15 +34,15 @@ public class TestTimeTable {
 			bean.setCreatedDatetime(new Timestamp(new Date().getTime()));
 			bean.setModifiedDatetime(new Timestamp(new Date().getTime()));
 
-			TimeTableModel model = new TimeTableModel();
+			TimetableModel model = new TimetableModel();
 
 			model.add(bean);
 		}
 		
 		public static void testUpdate() throws Exception {
 
-			TimeTableModel model = new TimeTableModel();
-			TimeTableBean bean = model.findByPk(2);
+			TimetableModel model = new TimetableModel();
+			TimetableBean bean = model.findByPk(2);
 
 			bean.setSemester("4");
 			bean.setDescription("Description");
@@ -60,20 +60,20 @@ public class TestTimeTable {
 		}
 		private static void testDelete() throws Exception {
 
-			TimeTableBean bean = new TimeTableBean();
+			TimetableBean bean = new TimetableBean();
 
 			bean.setId(1);
 
-			TimeTableModel model = new TimeTableModel();
+			TimetableModel model = new TimetableModel();
 
 			model.delete(bean);
 		}
 
 		private static void testFindByPk() throws Exception {
 
-			TimeTableBean bean = new TimeTableBean();
+			TimetableBean bean = new TimetableBean();
 
-			TimeTableModel model = new TimeTableModel();
+			TimetableModel model = new TimetableModel();
 
 			bean = model.findByPk(1);
 
@@ -99,9 +99,9 @@ public class TestTimeTable {
 		}
 		private static void testSearch()throws Exception{
 			
-	         TimeTableBean bean = new TimeTableBean();
+			TimetableBean bean = new TimetableBean();
 			
-			TimeTableModel model = new TimeTableModel();
+	         TimetableModel model = new TimetableModel();
 			
 			bean.setSemester("4");
 			
@@ -111,7 +111,7 @@ public class TestTimeTable {
 			
 			while(it.hasNext()) {
 				
-				bean = (TimeTableBean) it.next();
+				bean = (TimetableBean) it.next();
 				
 				System.out.println(bean.getId());
 				System.out.println(bean.getSemester());

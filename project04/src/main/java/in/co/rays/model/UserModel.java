@@ -38,7 +38,7 @@ public class UserModel {
 
 		int pk = 0;
 
-		UserBean existBean = findBylogin(bean.getLogin());
+		UserBean existBean = findBylogin(bean.getLogin_id());
 
 		if (existBean != null) {
 			throw new DuplicateRecordException("login already exist..!!");
@@ -55,7 +55,7 @@ public class UserModel {
 			pstmt.setLong(1, pk);
 			pstmt.setString(2, bean.getFirstName());
 			pstmt.setString(3, bean.getLastName());
-			pstmt.setString(4, bean.getLogin());
+			pstmt.setString(4, bean.getLogin_id());
 			pstmt.setString(5, bean.getPassword());
 			pstmt.setDate(6, new java.sql.Date(bean.getDob().getTime()));
 			pstmt.setString(7, bean.getMobileNo());
@@ -84,11 +84,12 @@ public class UserModel {
 
 	public void update(UserBean bean) throws Exception {
 
+
 		Connection conn = null;
 
 		int pk = 0;
 
-		UserBean existBean = findBylogin(bean.getLogin());
+		UserBean existBean = findBylogin(bean.getLogin_id());
 
 		if (existBean != null && bean.getId() != existBean.getId()) {
 			throw new DuplicateRecordException("login already exist..!!");
@@ -101,11 +102,11 @@ public class UserModel {
 			conn.setAutoCommit(false);
 
 			PreparedStatement pstmt = conn.prepareStatement(
-					"update st_user set first_name = ?, last_name = ?, login = ?, password = ?, dob = ?, mobile_no = ?, role_id = ?, gender = ?, created_by = ?, modified_by = ?, created_datetime = ?, modified_datetime = ?  where id = ?");
+					"update st_user set first_name = ?, last_name = ?, login_id = ?, password = ?, dob = ?, mobile_no = ?, role_id = ?, gender = ?, created_by = ?, modified_by = ?, created_datetime = ?, modified_datetime = ?  where id = ?");
 
 			pstmt.setString(1, bean.getFirstName());
 			pstmt.setString(2, bean.getLastName());
-			pstmt.setString(3, bean.getLogin());
+			pstmt.setString(3, bean.getLogin_id());
 			pstmt.setString(4, bean.getPassword());
 			pstmt.setDate(5, new java.sql.Date(bean.getDob().getTime()));
 			pstmt.setString(6, bean.getMobileNo());
@@ -177,7 +178,7 @@ public class UserModel {
 				bean.setId(rs.getLong(1));
 				bean.setFirstName(rs.getString(2));
 				bean.setLastName(rs.getString(3));
-				bean.setLogin(rs.getString(4));
+				bean.setLogin_id(rs.getString(4));
 				bean.setPassword(rs.getString(5));
 				bean.setDob(rs.getDate(6));
 				bean.setMobileNo(rs.getString(7));
@@ -215,7 +216,7 @@ public class UserModel {
 				bean.setId(rs.getLong(1));
 				bean.setFirstName(rs.getString(2));
 				bean.setLastName(rs.getString(3));
-				bean.setLogin(rs.getString(4));
+				bean.setLogin_id(rs.getString(4));
 				bean.setPassword(rs.getString(5));
 				bean.setDob(rs.getDate(6));
 				bean.setMobileNo(rs.getString(7));
@@ -235,7 +236,7 @@ public class UserModel {
 		return bean;
 	}
 
-	public UserBean authenticate(String loginId, String password) throws Exception {
+	public UserBean authenticate(String login_id, String password) throws Exception {
 
 		Connection conn = null;
 		UserBean bean = null;
@@ -243,9 +244,9 @@ public class UserModel {
 		try {
 			conn = JDBCDataSource.getConnection();
 
-			PreparedStatement pstmt = conn.prepareStatement("select * from st_user where login = ? and password = ?");
+			PreparedStatement pstmt = conn.prepareStatement("select * from st_user where login_id= ? and password= ?");
 
-			pstmt.setString(1, loginId);
+			pstmt.setString(1, login_id);
 			pstmt.setString(2, password);
 
 			ResultSet rs = pstmt.executeQuery();
@@ -255,7 +256,7 @@ public class UserModel {
 				bean.setId(rs.getLong(1));
 				bean.setFirstName(rs.getString(2));
 				bean.setLastName(rs.getString(3));
-				bean.setLogin(rs.getString(4));
+				bean.setLogin_id(rs.getString(4));
 				bean.setPassword(rs.getString(5));
 				bean.setDob(rs.getDate(6));
 				bean.setMobileNo(rs.getString(7));
@@ -313,7 +314,7 @@ public class UserModel {
 				bean.setId(rs.getLong(1));
 				bean.setFirstName(rs.getString(2));
 				bean.setLastName(rs.getString(3));
-				bean.setLogin(rs.getString(4));
+				bean.setLogin_id(rs.getString(4));
 				bean.setPassword(rs.getString(5));
 				bean.setDob(rs.getDate(6));
 				bean.setMobileNo(rs.getString(7));

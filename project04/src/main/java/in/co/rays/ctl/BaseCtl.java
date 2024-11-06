@@ -58,7 +58,7 @@ public abstract class BaseCtl extends HttpServlet {
 			modifiedBy = "root";
 		} else {
 
-			modifiedBy = userbean.getLogin();
+			modifiedBy = userbean.getLogin_id();
 
 			// If record is created first time
 			if ("null".equalsIgnoreCase(createdBy) || DataValidator.isNull(createdBy)) {

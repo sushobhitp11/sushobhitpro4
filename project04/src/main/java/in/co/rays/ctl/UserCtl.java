@@ -1,4 +1,4 @@
-	package in.co.rays.ctl;
+package in.co.rays.ctl;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,7 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import in.co.rays.bean.BaseBean;
 import in.co.rays.bean.UserBean;
+import in.co.rays.exception.ApplicationException;
+import in.co.rays.exception.DuplicateRecordException;
 import in.co.rays.model.RoleModel;
+import in.co.rays.model.UserModel;
 import in.co.rays.util.DataUtility;
 import in.co.rays.util.DataValidator;
 import in.co.rays.util.PropertyReader;
@@ -36,11 +39,11 @@ public class UserCtl extends BaseCtl {
 			request.setAttribute("lastName", "Invalid Last Name");
 			pass = false;
 		}
-		if (DataValidator.isNull(request.getParameter("login"))) {
-			request.setAttribute("login", PropertyReader.getValue("error.require", "Login Id"));
+		if (DataValidator.isNull(request.getParameter("login_id"))) {
+			request.setAttribute("login_id", PropertyReader.getValue("error.require", "Login Id"));
 			pass = false;
-		} else if (!DataValidator.isEmail(request.getParameter("login"))) {
-			request.setAttribute("login", PropertyReader.getValue("error.email", "Login"));
+		} else if (!DataValidator.isEmail(request.getParameter("login_id"))) {
+			request.setAttribute("login_id", PropertyReader.getValue("error.email", "Login"));
 			pass = false;
 		}
 		if (DataValidator.isNull(request.getParameter("password"))) {
@@ -86,7 +89,7 @@ public class UserCtl extends BaseCtl {
 		if (DataValidator.isNull(request.getParameter("roleId"))) {
 			request.setAttribute("roleId", PropertyReader.getValue("error.require", "Role"));
 			pass = false;
-		}	
+		}
 		return pass;
 	}
 
@@ -109,7 +112,7 @@ public class UserCtl extends BaseCtl {
 		bean.setRoleId(DataUtility.getLong(request.getParameter("roleId")));
 		bean.setFirstName(DataUtility.getString(request.getParameter("firstName")));
 		bean.setLastName(DataUtility.getString(request.getParameter("lastName")));
-		bean.setLogin(DataUtility.getString(request.getParameter("login")));
+		bean.setLogin_id(DataUtility.getString(request.getParameter("login_id")));
 		bean.setPassword(DataUtility.getString(request.getParameter("password")));
 		bean.setConfirmPassword(DataUtility.getString(request.getParameter("confirmPassword")));
 		bean.setGender(DataUtility.getString(request.getParameter("gender")));
@@ -123,13 +126,57 @@ public class UserCtl extends BaseCtl {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String op = DataUtility.getString(request.getParameter("operation"));
+		Long id = DataUtility.getLong(request.getParameter("id"));
+
+		if (id > 0) {
+
+			UserModel model = new UserModel();
+
+
+				try {
+					UserBean bean = model.findByPK(id);
+					ServletUtility.setBean(bean, request);
+				} catch (Exception e) {
+					
+					e.printStackTrace();
+				}
+				
+			
+		}
 		ServletUtility.forward(getView(), request, response);
+
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		ServletUtility.forward(getView(), request, response);
+		String op = DataUtility.getString(request.getParameter("operation"));
+
+		UserModel model = new UserModel();
+
+		UserBean bean = (UserBean) populateBean(request);
+
+		if (OP_SAVE.equalsIgnoreCase(op)) {
+			try {
+				try {
+					model.add(bean);
+				} catch (Exception e) {
+					ServletUtility.setSuccessMessage("User Added Successfully..!!", request);
+					ServletUtility.forward(getView(), request, response);
+					ServletUtility.setBean(bean, request);
+					ServletUtility.setErrorMessage("login id already exist", request);
+					ServletUtility.forward(getView(), request, response);
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (OP_RESET.equalsIgnoreCase(op)) {
+			ServletUtility.redirect(ORSView.USER_CTL, request, response);
+			return;
+		}
+
 	}
 
 	@Override

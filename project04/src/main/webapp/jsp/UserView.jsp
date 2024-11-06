@@ -82,7 +82,7 @@
 					<th>Login Id:</th>
 					<td><input type="text" name="login"
 						placeholder="Enter Email ID"
-						value="<%=DataUtility.getStringData(bean.getLogin())%>"></td>
+						value="<%=DataUtility.getStringData(bean.getLogin_id())%>"></td>
 					<td style="position: fixed;"><font color="red"> <%=ServletUtility.getErrorMessage("login", request)%></font></td>
 				</tr>
 				<tr>

@@ -31,7 +31,7 @@ public class TestUser {
 
 		bean.setFirstName("anurag");
 		bean.setLastName("tripathi");
-		bean.setLogin("anurag@gmail.com");
+		bean.setLogin_id("anurag@gmail.com");
 		bean.setPassword("12345");
 		bean.setDob(new Date(2012 - 05 - 11));
 		bean.setMobileNo("4545454");
@@ -54,7 +54,7 @@ public class TestUser {
 
 		bean.setFirstName("anurag");
 		bean.setLastName("tripathi");
-		bean.setLogin("anurag@gmail.com");
+		bean.setLogin_id("anurag@gmail.com");
 		bean.setPassword("12345");
 		bean.setDob(new Date(2012 - 05 - 11));
 		bean.setMobileNo("4545454");
@@ -93,7 +93,7 @@ public class TestUser {
 			System.out.println(bean.getId());
 			System.out.println(bean.getFirstName());
 			System.out.println(bean.getLastName());
-			System.out.println(bean.getLogin());
+			System.out.println(bean.getLogin_id());
 			System.out.println(bean.getPassword());
 			System.out.println(bean.getDob());
 			System.out.println(bean.getMobileNo());
@@ -120,7 +120,7 @@ public class TestUser {
 			System.out.println(bean.getId());
 			System.out.println(bean.getFirstName());
 			System.out.println(bean.getLastName());
-			System.out.println(bean.getLogin());
+			System.out.println(bean.getLogin_id());
 			System.out.println(bean.getPassword());
 			System.out.println(bean.getDob());
 			System.out.println(bean.getMobileNo());
@@ -151,7 +151,7 @@ public class TestUser {
 			System.out.println(bean.getId());
 			System.out.println(bean.getFirstName());
 			System.out.println(bean.getLastName());
-			System.out.println(bean.getLogin());
+			System.out.println(bean.getLogin_id());
 			System.out.println(bean.getPassword());
 			System.out.println(bean.getDob());
 			System.out.println(bean.getMobileNo());

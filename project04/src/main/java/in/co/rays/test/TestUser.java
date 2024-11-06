@@ -23,7 +23,7 @@ public class TestUser {
 		// testSearch();
 	}
 
-	private static void testAdd() throws Exception {
+	public static void testAdd() throws Exception {
 
 		UserBean bean = new UserBean();
 
@@ -47,7 +47,7 @@ public class TestUser {
 		model.add(bean);
 	}
 
-	private static void testUpdate() throws Exception {
+	public static void testUpdate() throws Exception {
 
 		UserModel model = new UserModel();
 		UserBean bean = model.findByPK(2);
@@ -69,18 +69,13 @@ public class TestUser {
 		model.update(bean);
 	}
 
-	private static void testDelete() throws Exception {
-
-		UserBean bean = new UserBean();
-
-		bean.setId(1);
-
+	public static void testDelete() throws Exception {
 		UserModel model = new UserModel();
-
-		model.delete(bean);
+		model.delete(1);
 	}
 
-	private static void testFindByPk() throws Exception {
+
+	public static void testFindByPk() throws Exception {
 
 		UserBean bean = new UserBean();
 
@@ -107,7 +102,7 @@ public class TestUser {
 		}
 	}
 
-	private static void testFindByLogin() throws Exception {
+	public static void testFindByLogin() throws Exception {
 
 		UserBean bean = new UserBean();
 
@@ -132,7 +127,7 @@ public class TestUser {
 			System.out.println(bean.getModifiedDatetime());
 		}
 	}
-	private static void testSearch()throws Exception{
+	public static void testSearch()throws Exception{
 		
          UserBean bean = new UserBean();
 		

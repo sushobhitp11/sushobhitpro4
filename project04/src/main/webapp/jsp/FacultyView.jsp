@@ -32,6 +32,7 @@
 </head>
 <body>
 	<form action="<%=ORSView.FACULTY_CTL%>" method="post">
+	<%@ include file="Header.jsp"%>
 
 		<jsp:useBean id="bean" class="in.co.rays.bean.FacultyBean"
 			scope="request"></jsp:useBean>

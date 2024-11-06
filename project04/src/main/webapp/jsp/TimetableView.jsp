@@ -16,6 +16,7 @@
 </head>
 <body>
       <form action="<%=ORSView.TIMETABLE_CTL%>" method="post">
+      <%@ include file="Header.jsp"%>
 
 		<jsp:useBean id="bean" class="in.co.rays.bean.TimetableBean"
 			scope="request"></jsp:useBean>

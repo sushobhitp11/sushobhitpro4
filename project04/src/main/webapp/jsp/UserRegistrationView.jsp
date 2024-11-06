@@ -29,6 +29,7 @@
 </head>
 <body>
 	<form action="<%=ORSView.USER_REGISTRATION_CTL%>" method="post">
+	<%@ include file="Header.jsp"%>
 
 		<jsp:useBean id="bean" class="in.co.rays.bean.UserBean"
 			scope="request"></jsp:useBean>

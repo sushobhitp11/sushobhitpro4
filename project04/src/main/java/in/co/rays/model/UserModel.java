@@ -134,7 +134,7 @@ public class UserModel {
 		}
 	}
 
-	public void delete(UserBean bean) throws Exception {
+	public void delete(long id) throws Exception {
 
 		Connection conn = null;
 
@@ -142,7 +142,7 @@ public class UserModel {
 			conn = JDBCDataSource.getConnection();
 
 			PreparedStatement pstmt = conn.prepareStatement("delete from st_user where id =?");
-			pstmt.setLong(1, bean.getId());
+			pstmt.setLong(1, id);
 
 			int i = pstmt.executeUpdate();
 			conn.commit();
@@ -281,7 +281,7 @@ public class UserModel {
 
 	public List search(UserBean bean, int pageNo, int pageSize) throws Exception {
 
-		StringBuffer sql = new StringBuffer("select * from user where 1=1");
+		StringBuffer sql = new StringBuffer("select * from st_user where 1=1");
 
 		if (bean != null) {
 			if (bean.getFirstName() != null && bean.getFirstName().length() > 0) {

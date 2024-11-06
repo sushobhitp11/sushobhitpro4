@@ -15,6 +15,7 @@
 </head>
 <body>
       <form action="<%=ORSView.COLLEGE_CTL%>" method="post">
+      <%@ include file="Header.jsp"%>
 
 		<jsp:useBean id="bean" class="in.co.rays.bean.CollegeBean"
 			scope="request"></jsp:useBean>

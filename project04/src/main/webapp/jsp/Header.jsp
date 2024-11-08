@@ -2,6 +2,7 @@
 <%@page import="in.co.rays.ctl.LoginCtl"%>
 <%@page import="in.co.rays.ctl.ORSView"%>
 <%@page import="in.co.rays.bean.UserBean"%>
+<%@page import="in.co.rays.ctl.PositionCtl"%>
 <html>
 <head>
 <meta charset="ISO-8859-1">
@@ -66,6 +67,8 @@
 				href="<%=ORSView.MARKSHEET_LIST_CTL%>">Marksheet List</a> | <a
 				href="<%=ORSView.USER_CTL%>">Add User</a> | <a
 				href="<%=ORSView.USER_LIST_CTL%>">User List</a> | <a
+				href="<%=ORSView.POSITION_CTL%>">Add Position</a> | <a
+				href="<%=ORSView.POSITION_LIST_CTL%>">Position List</a> | <a
 				href="<%=ORSView.ROLE_CTL%>">Add Role</a> | <a
 				href="<%=ORSView.ROLE_LIST_CTL%>">Role List</a> <%
  	}

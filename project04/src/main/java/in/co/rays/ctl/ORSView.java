@@ -35,6 +35,8 @@ public interface ORSView {
 	public String TIMETABLE_LIST_VIEW = PAGE_FOLDER + "/TimetableListView.jsp";
 	public String FACULTY_VIEW = PAGE_FOLDER + "/FacultyView.jsp";
 	public String FACULTY_LIST_VIEW = PAGE_FOLDER + "/FacultyListView.jsp";
+	public String POSITION_VIEW = PAGE_FOLDER + "/PositionView.jsp";
+	public String POSITION_LIST_VIEW = PAGE_FOLDER + "/PositionListView.jsp";
 
 	public String MARKSHEET_CTL = APP_CONTEXT + "/MarksheetCtl";
 	public String MARKSHEET_LIST_CTL = APP_CONTEXT + "/MarksheetListCtl";
@@ -63,4 +65,6 @@ public interface ORSView {
 	public String TIMETABLE_LIST_CTL = APP_CONTEXT + "/TimetableListCtl";
 	public String FACULTY_CTL = APP_CONTEXT + "/FacultyCtl";
 	public String FACULTY_LIST_CTL = APP_CONTEXT + "/FacultyListCtl";
+	public String POSITION_CTL = APP_CONTEXT + "/PositionCtl";
+	public String POSITION_LIST_CTL = APP_CONTEXT + "/PositionListCtl";
 }

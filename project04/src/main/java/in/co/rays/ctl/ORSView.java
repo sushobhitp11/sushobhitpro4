@@ -6,6 +6,7 @@ public interface ORSView {
 	public String APP_CONTEXT = "/project04";
 
 	public String PAGE_FOLDER = "/jsp";
+	public String LAYOUT_VIEW = "/BaseLayout.jsp";
 
 	public String JAVA_DOC_VIEW = APP_CONTEXT + "/doc/index.html";
 
@@ -37,6 +38,8 @@ public interface ORSView {
 	public String FACULTY_LIST_VIEW = PAGE_FOLDER + "/FacultyListView.jsp";
 	public String POSITION_VIEW = PAGE_FOLDER + "/PositionView.jsp";
 	public String POSITION_LIST_VIEW = PAGE_FOLDER + "/PositionListView.jsp";
+	public String ATTRIBUTE_VIEW = PAGE_FOLDER + "/AttributeView.jsp";
+	public String ATTRIBUTE_LIST_VIEW = PAGE_FOLDER + "/AttributeListView.jsp";
 
 	public String MARKSHEET_CTL = APP_CONTEXT + "/MarksheetCtl";
 	public String MARKSHEET_LIST_CTL = APP_CONTEXT + "/MarksheetListCtl";
@@ -67,4 +70,6 @@ public interface ORSView {
 	public String FACULTY_LIST_CTL = APP_CONTEXT + "/FacultyListCtl";
 	public String POSITION_CTL = APP_CONTEXT + "/PositionCtl";
 	public String POSITION_LIST_CTL = APP_CONTEXT + "/PositionListCtl";
+	public String ATTRIBUTE_CTL = APP_CONTEXT + "/AttributeCtl";
+	public String ATTRIBUTE_LIST_CTL = APP_CONTEXT + "/AttributeListCtl";
 }

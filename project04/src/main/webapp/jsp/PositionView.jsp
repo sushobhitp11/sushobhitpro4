@@ -1,5 +1,7 @@
 <%@page import="in.co.rays.util.DataUtility"%>
+<%@page import="in.co.rays.util.HTMLUtility"%>
 <%@page import="in.co.rays.ctl.PositionCtl"%>
+<%@page import="java.util.HashMap"%>
 <%@page import="in.co.rays.util.ServletUtility"%>
 <%@page import="in.co.rays.ctl.ORSView"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -52,7 +54,7 @@
 				</tr>
 				<tr>
 					<th>Opening Date:</th>
-					<td><input type="date" name="openingDate" id = "udate"
+					<td><input type="date" name="openingDate" id="udate"
 						placeholder="Enter Opening Date"
 						value="<%=DataUtility.getStringData(bean.getOpeningDate())%>"></td>
 					<td style="position: fixed;"><font color="red"> <%=ServletUtility.getErrorMessage("openingDate", request)%></font></td>
@@ -66,10 +68,16 @@
 				</tr>
 				<tr>
 					<th>Condition:</th>
-					<td><input type="text" name="Condition"
-						placeholder="Enter Condition"
-						value="<%=DataUtility.getStringData(bean.getCondition())%>"></td>
-					<td style="position: fixed;"><font color="red"> <%=ServletUtility.getErrorMessage("Condition", request)%></font></td>
+					<td>
+						<%
+							HashMap map = new HashMap();
+							map.put("open", "open");
+							map.put("close", "close");
+							map.put("hold", "hold");
+							map.put("coming soon", "coming soon");
+						%> <%=HTMLUtility.getList("condition", bean.getCondition(), map)%>
+					</td>
+					<td style="position: fixed;"><font color="red"> <%=ServletUtility.getErrorMessage("condition", request)%></font></td>
 				</tr>
 				<th></th>
 					<td><input type="submit" name="operation"

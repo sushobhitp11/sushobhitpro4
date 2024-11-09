@@ -12,11 +12,12 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Position List</title>
+<script src="<%=ORSView.APP_CONTEXT%>/js/checkbox.js"></script>
 </head>
 <body>
     <%@ include file="Header.jsp" %>
     <div align="center">
-        <form action="<%= ORSView.POSITION_LIST_CTL %>" method="post">
+        <form action="<%= ORSView.POSITION_LIST_CTL%>" method="post">
 
             <jsp:useBean id="bean" class="in.co.rays.bean.PositionBean" scope="request"></jsp:useBean>
 
@@ -61,7 +62,8 @@
 
             <table border="1" style="width: 100%">
                 <tr style="background-color: lavender; color: black;">
-                    <th><input type="checkbox" id="selectall"></th>
+                    <th><input type="checkbox" id="selectall">
+					</th>
                     <th>S.No.</th>
                     <th>Designation</th>
                     <th>Opening Date</th>
@@ -74,7 +76,7 @@
                         PositionBean positionBean = (PositionBean) it.next();
                 %>
                 <tr align="center">
-                    <td><input type="checkbox" class="case" name="ids" value="<%= positionBean.getId() %>"></td>
+                    <td><input type="checkbox" class="case" name="ids" value="<%=positionBean.getId() %>"></td>
                     <td><%= index++ %></td>
                     <td><%= positionBean.getDesignation() %></td>
                     <td><%= positionBean.getOpeningDate() %></td>

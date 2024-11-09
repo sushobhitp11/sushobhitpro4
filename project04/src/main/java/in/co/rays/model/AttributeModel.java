@@ -6,12 +6,13 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import in.co.rays.bean.AttributeBean;
 import in.co.rays.bean.PositionBean;
 import in.co.rays.exception.ApplicationException;
 import in.co.rays.exception.DuplicateRecordException;
 import in.co.rays.util.JDBCDataSource;
 
-public class PositionModel {
+public class AttributeModel {
 
 	public Integer nextPk() throws Exception {
 
@@ -19,7 +20,7 @@ public class PositionModel {
 
 		Connection conn = JDBCDataSource.getConnection();
 
-		PreparedStatement pstmt = conn.prepareStatement("select max(id) from st_position");
+		PreparedStatement pstmt = conn.prepareStatement("select max(id) from st_attribute");
 
 		ResultSet rs = pstmt.executeQuery();
 
@@ -33,10 +34,9 @@ public class PositionModel {
 
 	}
 
-	public void add(PositionBean bean) throws Exception {
+	public void add(AttributeBean bean) throws Exception {
 
-
-		PositionBean existBean = findBydesignation(bean.getDesignation());
+		AttributeBean existBean = findBydisplayName(bean.getDisplayName());
 
 		if (existBean != null) {
 			throw new DuplicateRecordException("designation already exist..!!");
@@ -45,19 +45,18 @@ public class PositionModel {
 
 		Connection conn = JDBCDataSource.getConnection();
 
-		PreparedStatement pstmt = conn
-				.prepareStatement("insert into st_position values(?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		PreparedStatement pstmt = conn.prepareStatement("insert into st_position values(?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 		pstmt.setLong(1, pk);
-		pstmt.setString(2, bean.getDesignation());
-		pstmt.setDate(3, new java.sql.Date(bean.getOpeningDate().getTime()));
-		pstmt.setString(4, bean.getReqiredExperience());
-		pstmt.setString(5, bean.getCondition());
+		pstmt.setString(2, bean.getDisplayName());
+		pstmt.setString(4, bean.getDataType());
+		pstmt.setString(5, bean.getIsActive());
+		pstmt.setString(5, bean.getDescription());
 		pstmt.setString(6, bean.getCreatedBy());
 		pstmt.setString(7, bean.getModifiedBy());
 		pstmt.setTimestamp(8, bean.getCreatedDatetime());
 		pstmt.setTimestamp(9, bean.getModifiedDatetime());
-		
+
 		int i = pstmt.executeUpdate();
 
 		JDBCDataSource.closeConnection(conn);
@@ -65,15 +64,15 @@ public class PositionModel {
 		System.out.println("data inserted => " + i);
 	}
 
-	public void update(PositionBean bean) throws Exception {
+	public void update(AttributeBean bean) throws Exception {
 
 		Connection conn = JDBCDataSource.getConnection();
 		PreparedStatement pstmt = conn.prepareStatement(
-				"update st_position set designation = ?, opening_date = ?, required_experience = ?, `condition` = ?, created_by = ?, modified_by = ?, created_datetime = ?, modified_datetime = ? where id = ?");
-		pstmt.setString(1, bean.getDesignation());
-		pstmt.setDate(2, new java.sql.Date(bean.getOpeningDate().getTime()));
-		pstmt.setString(3, bean.getReqiredExperience());
-		pstmt.setString(4, bean.getCondition());
+				"update st_attribute set display_name = ?, data_type = ?, is_active = ?, description = ?, created_by = ?, modified_by = ?, created_datetime = ?, modified_datetime = ? where id = ?");
+		pstmt.setString(1, bean.getDisplayName());
+		pstmt.setString(2, bean.getDataType());
+		pstmt.setString(3, bean.getIsActive());
+		pstmt.setString(4, bean.getDescription());
 		pstmt.setString(5, bean.getCreatedBy());
 		pstmt.setString(6, bean.getModifiedBy());
 		pstmt.setTimestamp(7, bean.getCreatedDatetime());
@@ -90,7 +89,7 @@ public class PositionModel {
 
 		Connection conn = JDBCDataSource.getConnection();
 
-		PreparedStatement pstmt = conn.prepareStatement("delete from st_position where id =?");
+		PreparedStatement pstmt = conn.prepareStatement("delete from st_attribute where id =?");
 
 		pstmt.setLong(1, id);
 
@@ -103,25 +102,25 @@ public class PositionModel {
 		System.out.println("data deleted => " + i);
 	}
 
-	public PositionBean findByPk(long id) throws Exception {
+	public AttributeBean findByPk(long id) throws Exception {
 
 		Connection conn = null;
-		PositionBean bean = null;
+		AttributeBean bean = null;
 
 		try {
 			conn = JDBCDataSource.getConnection();
 
-			PreparedStatement pstmt = conn.prepareStatement("select * from st_position where id=?");
+			PreparedStatement pstmt = conn.prepareStatement("select * from st_attribute where id=?");
 			pstmt.setLong(1, id);
 			ResultSet rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				bean = new PositionBean();
+				bean = new AttributeBean();
 				bean.setId(rs.getLong(1));
-				bean.setDesignation(rs.getString(2));
-				bean.setOpeningDate(rs.getDate(3));
-				bean.setReqiredExperience(rs.getString(4));
-				bean.setCondition(rs.getString(5));
+				bean.setDisplayName(rs.getString(2));
+				bean.setDataType(rs.getString(3));
+				bean.setIsActive(rs.getString(4));
+				bean.setDescription(rs.getString(5));
 				bean.setCreatedBy(rs.getString(6));
 				bean.setModifiedBy(rs.getString(7));
 				bean.setCreatedDatetime(rs.getTimestamp(8));
@@ -129,7 +128,7 @@ public class PositionModel {
 
 			}
 		} catch (Exception e) {
-			throw new ApplicationException("Exception : Exception in getting Position by PK");
+			throw new ApplicationException("Exception : Exception in getting Attribute by PK");
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
@@ -137,53 +136,49 @@ public class PositionModel {
 
 	}
 
-	public PositionBean findBydesignation(String designation) throws Exception {
+	public AttributeBean findBydisplayName(String displayName) throws Exception {
+
 		Connection conn = null;
-		PositionBean bean = null;
+		AttributeBean bean = null;
 
 		conn = JDBCDataSource.getConnection();
 
 		PreparedStatement pstmt;
-		
-			pstmt = conn.prepareStatement("select * from st_position where designation=?");
 
-			pstmt.setString(1, designation);
-			ResultSet rs = pstmt.executeQuery();
+		pstmt = conn.prepareStatement("select * from st_attribute where displayName =?");
 
-			while (rs.next()) {
-				bean = new PositionBean();
-				bean.setId(rs.getLong(1));
-				bean.setDesignation(rs.getString(2));
-				bean.setOpeningDate(rs.getDate(3));
-				bean.setReqiredExperience(rs.getString(4));
-				bean.setCondition(rs.getString(5));
-				bean.setCreatedBy(rs.getString(6));
-				bean.setModifiedBy(rs.getString(7));
-				bean.setCreatedDatetime(rs.getTimestamp(8));
-				bean.setModifiedDatetime(rs.getTimestamp(9));
+		pstmt.setString(1, displayName);
+		ResultSet rs = pstmt.executeQuery();
 
-			}
-		
-			JDBCDataSource.closeConnection(conn);
+		while (rs.next()) {
+			bean = new AttributeBean();
+			bean.setId(rs.getLong(1));
+			bean.setDisplayName(rs.getString(2));
+			bean.setDataType(rs.getString(3));
+			bean.setIsActive(rs.getString(4));
+			bean.setDescription(rs.getString(5));
+			bean.setCreatedBy(rs.getString(6));
+			bean.setModifiedBy(rs.getString(7));
+			bean.setCreatedDatetime(rs.getTimestamp(8));
+			bean.setModifiedDatetime(rs.getTimestamp(9));
+
+		}
+
+		JDBCDataSource.closeConnection(conn);
 		return bean;
-		
 
 	}
 
 	public List list() throws Exception {
 		return search(null, 0, 0);
 	}
+	public List search(AttributeBean bean, int pageNo, int pageSize) throws Exception {
 
-	public List search(PositionBean bean, int pageNo, int pageSize) throws Exception {
-
-		StringBuffer sql = new StringBuffer("select * from st_position where 1=1");
+		StringBuffer sql = new StringBuffer("select * from st_attribute where 1=1");
 
 		if (bean != null) {
-			if (bean.getDesignation() != null && bean.getDesignation().length() > 0) {
-				sql.append(" and designation like '" + bean.getDesignation() + "%'");
-			}
-			if (bean.getOpeningDate() != null && bean.getOpeningDate().getTime() > 0) {
-				sql.append(" and opening_Date like '" + new java.sql.Date(bean.getOpeningDate().getTime()) + "%'");
+			if (bean.getDisplayName() != null && bean.getDisplayName().length() > 0) {
+				sql.append(" and displayName like '" + bean.getDisplayName() + "%'");
 			}
 		}
 
@@ -205,13 +200,12 @@ public class PositionModel {
 			ResultSet rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				bean = new PositionBean();
+				bean = new AttributeBean();
 				bean.setId(rs.getLong(1));
-				bean.setId(rs.getLong(1));
-				bean.setDesignation(rs.getString(2));
-				bean.setOpeningDate(rs.getDate(3));
-				bean.setReqiredExperience(rs.getString(4));
-				bean.setCondition(rs.getString(5));
+				bean.setDisplayName(rs.getString(2));
+				bean.setDataType(rs.getString(3));
+				bean.setIsActive(rs.getString(4));
+				bean.setDescription(rs.getString(5));
 				bean.setCreatedBy(rs.getString(6));
 				bean.setModifiedBy(rs.getString(7));
 				bean.setCreatedDatetime(rs.getTimestamp(8));

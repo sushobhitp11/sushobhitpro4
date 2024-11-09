@@ -11,6 +11,7 @@
 <html>
 <head>
 <title>Insert title here</title>
+<script src="/project04/js/checkbox.js"></script>
 </head>
 <body>
 	<%@ include file="Header.jsp"%>

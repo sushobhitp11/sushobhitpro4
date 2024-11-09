@@ -133,16 +133,14 @@ public class UserCtl extends BaseCtl {
 
 			UserModel model = new UserModel();
 
+			try {
+				UserBean bean = model.findByPK(id);
+				ServletUtility.setBean(bean, request);
+			} catch (Exception e) {
 
-				try {
-					UserBean bean = model.findByPK(id);
-					ServletUtility.setBean(bean, request);
-				} catch (Exception e) {
-					
-					e.printStackTrace();
-				}
-				
-			
+				e.printStackTrace();
+			}
+
 		}
 		ServletUtility.forward(getView(), request, response);
 
@@ -156,12 +154,11 @@ public class UserCtl extends BaseCtl {
 		UserModel model = new UserModel();
 
 		UserBean bean = (UserBean) populateBean(request);
-
+		
 		if (OP_SAVE.equalsIgnoreCase(op)) {
+			
 			try {
-				try {
 					model.add(bean);
-				} catch (Exception e) {
 					ServletUtility.setSuccessMessage("User Added Successfully..!!", request);
 					ServletUtility.forward(getView(), request, response);
 					ServletUtility.setBean(bean, request);
@@ -169,19 +166,21 @@ public class UserCtl extends BaseCtl {
 					ServletUtility.forward(getView(), request, response);
 				}
 
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if (OP_RESET.equalsIgnoreCase(op)) {
-			ServletUtility.redirect(ORSView.USER_CTL, request, response);
-			return;
+		 catch (Exception e) {
+			e.printStackTrace();
 		}
+	}else if(OP_RESET.equalsIgnoreCase(op))
 
+	{
+		ServletUtility.redirect(ORSView.USER_CTL, request, response);
+		return;
 	}
 
-	@Override
-	protected String getView() {
-		return ORSView.USER_VIEW;
+}
+
+@Override
+protected String getView() {
+	return ORSView.USER_VIEW;
 	}
 
 }

@@ -5,17 +5,17 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DataUtility {
-	
-	public static final String APP_DATE_FORMAT = "MM/dd/yyyy" ;
-	
-	public static final String APP_TIME_FORMAT = "MM/dd/yyyy HH:mm;ss" ;
-	
-	public static final SimpleDateFormat formatter  = new SimpleDateFormat(APP_DATE_FORMAT);
-	
-	public static final SimpleDateFormat timeformatter  = new SimpleDateFormat(APP_TIME_FORMAT);
-	
+
+	public static final String APP_DATE_FORMAT = "yyyy-MM-dd";
+
+	public static final String APP_TIME_FORMAT = "MM/dd/yyyy HH:mm;ss";
+
+	public static final SimpleDateFormat formatter = new SimpleDateFormat(APP_DATE_FORMAT);
+
+	public static final SimpleDateFormat timeformatter = new SimpleDateFormat(APP_TIME_FORMAT);
+
 	public static String getString(String val) {
-		if(DataValidator.isNotNull(val)) {
+		if (DataValidator.isNotNull(val)) {
 			return val.trim();
 		} else {
 			return val;
@@ -161,9 +161,5 @@ public class DataUtility {
 		System.out.println("\ngetTimestamp(Timestamp) Test:");
 		System.out.println("Timestamp to long: " + getTimestamp(currentTimestamp));
 	}
-		
-			
-		
-	
 
 }

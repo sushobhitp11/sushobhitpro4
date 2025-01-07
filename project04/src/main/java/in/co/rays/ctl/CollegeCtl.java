@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import in.co.rays.bean.BaseBean;
 import in.co.rays.bean.CollegeBean;
+import in.co.rays.bean.PositionBean;
+import in.co.rays.model.CollegeModel;
+import in.co.rays.model.PositionModel;
 import in.co.rays.util.DataUtility;
 import in.co.rays.util.DataValidator;
 import in.co.rays.util.PropertyReader;
@@ -69,11 +72,49 @@ public class CollegeCtl extends BaseCtl {
 	}
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	ServletUtility.forward(getView(), request, response);	
+		String op = DataUtility.getString(request.getParameter("operation"));
+		Long id = DataUtility.getLong(request.getParameter("id"));
+
+		if (id > 0) {
+
+			CollegeModel model = new CollegeModel();
+
+			try {
+				CollegeBean bean = model.findByPk(id);
+				ServletUtility.setBean(bean, request);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		ServletUtility.forward(getView(), request, response);
+
 	}
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	ServletUtility.forward(getView(), request, response);	
+		String op = DataUtility.getString(request.getParameter("operation"));
+
+		CollegeModel model = new CollegeModel();
+
+		CollegeBean bean = (CollegeBean) populateBean(request);
+
+		if (OP_SAVE.equalsIgnoreCase(op)) {
+			try {
+
+				model.add(bean);
+				ServletUtility.setSuccessMessage("Data Added Successfully..!!", request);
+				ServletUtility.forward(getView(), request, response);
+				ServletUtility.setBean(bean, request);
+				ServletUtility.setErrorMessage("Data already exist", request);
+				ServletUtility.forward(getView(), request, response);
+			}
+
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (OP_RESET.equalsIgnoreCase(op)) {
+			ServletUtility.redirect(ORSView.COLLEGE_CTL, request, response);
+			return;
+		}	
 	}
 
 	@Override

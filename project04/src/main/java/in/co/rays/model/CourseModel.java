@@ -80,13 +80,13 @@ public class CourseModel {
 
 	}
 
-	public void delete(CourseBean bean) throws Exception {
+	public void delete(long id) throws Exception {
 
 		Connection conn = JDBCDataSource.getConnection();
 
 		PreparedStatement pstmt = conn.prepareStatement("delete from st_course where id =?");
 
-		pstmt.setLong(1, bean.getId());
+		pstmt.setLong(1, id);
 
 		int i = pstmt.executeUpdate();
 

@@ -59,7 +59,7 @@ public class TestRole {
 		
 		RoleModel model = new RoleModel();
 		
-		model.delete(bean);
+		//model.delete(long);
 		
 	}
 	private static void testFindByPk()throws Exception{

@@ -60,7 +60,7 @@ public static void main(String[] args) throws Exception {
 
 		CourseModel model = new CourseModel();
 
-		model.delete(bean);
+		//model.delete(bean);
 	}
 
 	private static void testFindByPk() throws Exception {

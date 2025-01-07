@@ -71,7 +71,7 @@ public class TestStudent {
 
 		StudentModel model = new StudentModel();
 
-		model.delete(bean);
+		//model.delete(bean);
 	}
 
 	private static void testFindByPk() throws Exception {

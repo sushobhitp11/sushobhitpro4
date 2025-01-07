@@ -110,13 +110,13 @@ public class StudentModel {
 
 	}
 
-	public void delete(StudentBean bean) throws Exception {
+	public void delete(long id) throws Exception {
 
 		Connection conn = JDBCDataSource.getConnection();
 
 		PreparedStatement pstmt = conn.prepareStatement("delete from st_student where id =?");
 
-		pstmt.setLong(1, bean.getId());
+		pstmt.setLong(1, id);
 
 		int i = pstmt.executeUpdate();
 

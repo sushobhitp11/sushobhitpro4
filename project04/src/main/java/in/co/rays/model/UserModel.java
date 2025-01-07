@@ -36,7 +36,7 @@ public class UserModel {
 
 		Connection conn = null;
 
-		int pk = 0;
+		int pk = nextPk();
 
 		UserBean existBean = findBylogin(bean.getLogin_id());
 

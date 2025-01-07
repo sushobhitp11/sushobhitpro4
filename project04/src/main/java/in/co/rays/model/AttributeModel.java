@@ -45,12 +45,12 @@ public class AttributeModel {
 
 		Connection conn = JDBCDataSource.getConnection();
 
-		PreparedStatement pstmt = conn.prepareStatement("insert into st_position values(?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		PreparedStatement pstmt = conn.prepareStatement("insert into st_attribute values(?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 		pstmt.setLong(1, pk);
 		pstmt.setString(2, bean.getDisplayName());
-		pstmt.setString(4, bean.getDataType());
-		pstmt.setString(5, bean.getIsActive());
+		pstmt.setString(3, bean.getDataType());
+		pstmt.setString(4, bean.getIsActive());
 		pstmt.setString(5, bean.getDescription());
 		pstmt.setString(6, bean.getCreatedBy());
 		pstmt.setString(7, bean.getModifiedBy());
@@ -145,7 +145,7 @@ public class AttributeModel {
 
 		PreparedStatement pstmt;
 
-		pstmt = conn.prepareStatement("select * from st_attribute where displayName =?");
+		pstmt = conn.prepareStatement("select * from st_attribute where display_name =?");
 
 		pstmt.setString(1, displayName);
 		ResultSet rs = pstmt.executeQuery();
@@ -178,7 +178,7 @@ public class AttributeModel {
 
 		if (bean != null) {
 			if (bean.getDisplayName() != null && bean.getDisplayName().length() > 0) {
-				sql.append(" and displayName like '" + bean.getDisplayName() + "%'");
+				sql.append(" and display_name like '" + bean.getDisplayName() + "%'");
 			}
 		}
 

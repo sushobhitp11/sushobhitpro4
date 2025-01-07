@@ -33,7 +33,7 @@ public class CollegeModel {
 
 	public void add(CollegeBean bean) throws Exception {
 
-		int pk = 0;
+		int pk = nextPk();
 
 		Connection conn = JDBCDataSource.getConnection();
 
@@ -82,13 +82,13 @@ public class CollegeModel {
 
 	}
 
-	public void delete(CollegeBean bean) throws Exception {
+	public void delete(long id) throws Exception {
 
 		Connection conn = JDBCDataSource.getConnection();
 
 		PreparedStatement pstmt = conn.prepareStatement("delete from st_college where id =?");
 
-		pstmt.setLong(1, bean.getId());
+		pstmt.setLong(1, id);
 
 		int i = pstmt.executeUpdate();
 

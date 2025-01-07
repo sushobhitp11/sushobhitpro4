@@ -40,6 +40,8 @@ public interface ORSView {
 	public String POSITION_LIST_VIEW = PAGE_FOLDER + "/PositionListView.jsp";
 	public String ATTRIBUTE_VIEW = PAGE_FOLDER + "/AttributeView.jsp";
 	public String ATTRIBUTE_LIST_VIEW = PAGE_FOLDER + "/AttributeListView.jsp";
+	public String TASK_VIEW = PAGE_FOLDER + "/TaskView.jsp";
+	public String TASK_LIST_VIEW = PAGE_FOLDER + "/TaskListView.jsp";
 
 	public String MARKSHEET_CTL = APP_CONTEXT + "/MarksheetCtl";
 	public String MARKSHEET_LIST_CTL = APP_CONTEXT + "/MarksheetListCtl";
@@ -72,4 +74,6 @@ public interface ORSView {
 	public String POSITION_LIST_CTL = APP_CONTEXT + "/PositionListCtl";
 	public String ATTRIBUTE_CTL = APP_CONTEXT + "/AttributeCtl";
 	public String ATTRIBUTE_LIST_CTL = APP_CONTEXT + "/AttributeListCtl";
+	public String TASK_CTL = APP_CONTEXT + "/TaskCtl";
+	public String TASK_LIST_CTL = APP_CONTEXT + "/TaskListCtl";
 }

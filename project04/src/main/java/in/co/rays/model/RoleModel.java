@@ -33,16 +33,16 @@ public class RoleModel {
 		return pk + 1;
 	}
 
-	public void add(RoleBean bean) throws Exception {
+	public long add(RoleBean bean) throws Exception {
 
 		Connection conn = null;
 
-		int pk = 0;
+		int pk = nextPk();
 
 		RoleBean existBean = findByName(bean.getName());
 
 		if (existBean != null) {
-			throw new DuplicateRecordException("login already exist..!!");
+			throw new DuplicateRecordException("Role already exist..!!");
 		}
 		try {
 			pk = nextPk();
@@ -71,10 +71,10 @@ public class RoleModel {
 			} catch (Exception ex) {
 				throw new ApplicationException("Exception: add rollback exception " + ex.getMessage());
 			}
-			throw new ApplicationException("Exception: Exception in add User " + e);
+			throw new ApplicationException("Exception: Exception in Add Role " + e);
 		} finally {
 			JDBCDataSource.closeConnection(conn);
-		}
+		}return pk;
 	}
 
 	public void update(RoleBean bean) throws Exception {
@@ -98,12 +98,12 @@ public class RoleModel {
 
 	}
 
-	public void delete(RoleBean bean) throws Exception {
+	public void delete(long id) throws Exception {
 
 		Connection conn = JDBCDataSource.getConnection();
 
 		PreparedStatement pstmt = conn.prepareStatement("delete from st_role where id =?");
-		pstmt.setLong(1, bean.getId());
+		pstmt.setLong(1, id);
 		pstmt.executeUpdate();
 
 		JDBCDataSource.closeConnection(conn);

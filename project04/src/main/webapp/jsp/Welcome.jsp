@@ -14,10 +14,19 @@
       <br>
       <br>
       <div align="center">
-      
-           <h1>Welcome</h1>
-      
+      <h1>
+          <font size="10px" color="navy">Welcome to ORS</font>
+	</h1>
       </div>
-
+      
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      
+      <%@ include file="Footer.jsp"%>
 </body>
 </html>

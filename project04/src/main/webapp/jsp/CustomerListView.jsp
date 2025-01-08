@@ -22,7 +22,7 @@
             <jsp:useBean id="bean" class="in.co.rays.bean.CustomerBean" scope="request"></jsp:useBean>
 
             <div align="center">
-                <h1><font color="navy">Task List</font></h1>
+                <h1><font color="navy">Customer List</font></h1>
             </div>
 
             <div align="center" style="height: 15px; margin-bottom: 12px">
@@ -82,7 +82,7 @@
                     <td><%= customerBean.getLocation() %></td>
                     <td><%= customerBean.getContactNumber() %></td>
                     <td><%= customerBean.getImportance() %></td>
-                    <td><a href="<%= ORSView.TASK_CTL %>?id=<%= customerBean.getId() %>">edit</a></td>
+                    <td><a href="<%= ORSView.CUSTOMER_CTL %>?id=<%= customerBean.getId() %>">edit</a></td>
                 </tr>
                 <%
                     }

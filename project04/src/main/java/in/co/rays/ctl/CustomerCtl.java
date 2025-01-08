@@ -26,6 +26,9 @@ public class CustomerCtl extends BaseCtl{
 		if (DataValidator.isNull(request.getParameter("clientName"))) {
 			request.setAttribute("clientName", PropertyReader.getValue("error.require", "Client Name"));
 			pass = false;
+		}else if (!DataValidator.isName(request.getParameter("clientName"))) {
+			request.setAttribute("clientName", "Invalid Client Name");
+			pass = false;
 		}
 		if (DataValidator.isNull(request.getParameter("location"))) {
 			request.setAttribute("location", PropertyReader.getValue("error.require", "Location"));
@@ -33,6 +36,12 @@ public class CustomerCtl extends BaseCtl{
 		}
 		if (DataValidator.isNull(request.getParameter("contactNumber"))) {
 			request.setAttribute("contactNumber", PropertyReader.getValue("error.require", "Contact Number"));
+			pass = false;
+		}else if (!DataValidator.isPhoneLength(request.getParameter("contactNumber"))) {
+			request.setAttribute("contactNumber", "Contact Number No. must have 10 digits");
+			pass = false;
+		} else if (!DataValidator.isPhoneNo(request.getParameter("contactNumber"))) {
+			request.setAttribute("contactNumber", "Invalid Contact Number");
 			pass = false;
 		}
 		if (DataValidator.isNull(request.getParameter("importance"))) {

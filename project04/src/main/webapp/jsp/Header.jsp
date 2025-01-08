@@ -73,6 +73,8 @@
 				href="<%=ORSView.POSITION_LIST_CTL%>">Position List</a> | <a
 				href="<%=ORSView.ATTRIBUTE_CTL%>">Add Attribute</a> | <a
 				href="<%=ORSView.ATTRIBUTE_LIST_CTL%>">Attribute List</a> | <a
+				href="<%=ORSView.CUSTOMER_CTL%>">Add Customer</a> | <a
+				href="<%=ORSView.CUSTOMER_LIST_CTL%>">Customer List</a> | <a
 				href="<%=ORSView.ROLE_CTL%>">Add Role</a> | <a
 				href="<%=ORSView.ROLE_LIST_CTL%>">Role List</a> <%
  	}

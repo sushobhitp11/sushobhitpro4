@@ -88,6 +88,8 @@
 				href="<%=ORSView.SUBJECT_LIST_CTL%>">Subject List</a> | <a
 				href="<%=ORSView.TASK_CTL%>">Add Task</a> | <a
 				href="<%=ORSView.TASK_LIST_CTL%>">Task List</a> | <a
+				href="<%=ORSView.STAFFMEMBER_CTL%>">Add Staff Member</a> | <a
+				href="<%=ORSView.STAFFMEMBER_LIST_CTL%>">Staff Member List</a> | <a
 				href="<%=ORSView.FACULTY_CTL%>">Add Faculty</a> | <a
 				href="<%=ORSView.FACULTY_LIST_CTL%>">Faculty List</a> <%
  	}
